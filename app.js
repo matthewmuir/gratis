@@ -46,20 +46,41 @@ function renderUI(data) {
   currentQuestionId = data.id;
   sessionStorage.setItem("gratis_current_id", currentQuestionId);
 
-  document.getElementById("question-text").innerText = data.text || "No text provided for this step.";
+  document.getElementById("question-text").innerText = data.text || "No question text provided.";
   const optionsDiv = document.getElementById("options-container");
   optionsDiv.innerHTML = "";
 
-  // Safely check if options exist before running forEach
-  const optionsList = Array.isArray(data.options) ? data.options : [];
-  
-  optionsList.forEach(opt => {
-    const btn = document.createElement("button");
-    btn.className = "option-btn";
-    btn.innerText = opt.label;
-    btn.onclick = () => handleAnswer(opt);
-    optionsDiv.appendChild(btn);
-  });
+  // 1. Render Choice Buttons
+  if (data.type === "choice" && Array.isArray(data.options)) {
+    data.options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = "option-btn";
+      btn.innerText = opt.label;
+      btn.onclick = () => handleAnswer(opt);
+      optionsDiv.appendChild(btn);
+    });
+
+  // 2. Render Text / Number Inputs
+  } else if (data.type === "text" || data.type === "number") {
+    const input = document.createElement("input");
+    input.type = data.type === "number" ? "number" : "text";
+    input.id = "free-text-input";
+    input.placeholder = "Type your answer here...";
+    input.style.cssText = "width: 100%; padding: 12px; margin: 12px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;";
+
+    const submitBtn = document.createElement("button");
+    submitBtn.className = "option-btn";
+    submitBtn.innerText = "Next";
+    submitBtn.onclick = () => {
+      const val = input.value.trim();
+      if (val !== "") {
+        handleAnswer({ value: val, summary_text: val });
+      }
+    };
+
+    optionsDiv.appendChild(input);
+    optionsDiv.appendChild(submitBtn);
+  }
 }
 
 // Initialize on page load
