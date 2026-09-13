@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gratis - Legal Intake</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; line-height: 1.5; }
+    .card { border: 1px solid #ccc; border-radius: 8px; padding: 24px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .option-btn { display: block; width: 100%; text-align: left; padding: 12px 16px; margin: 8px 0; border: 1px solid #0070f3; background: #fff; color: #0070f3; border-radius: 6px; cursor: pointer; font-size: 16px; }
+    .option-btn:hover { background: #0070f3; color: #fff; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div id="question-container">
+      <h2 id="question-text">Loading intake assistant...</h2>
+      <div id="options-container"></div>
+    </div>
+    
+    <div id="summary-container" class="hidden">
+      <h2>Intake Complete</h2>
+      <p>Here is your generated matter summary:</p>
+      <pre id="summary-text" style="background: #f4f4f4; padding: 12px; border-radius: 4px;"></pre>
+      <button onclick="sessionStorage.clear(); location.reload();" class="option-btn">Start Over</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
