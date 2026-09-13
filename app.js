@@ -46,11 +46,14 @@ function renderUI(data) {
   currentQuestionId = data.id;
   sessionStorage.setItem("gratis_current_id", currentQuestionId);
 
-  document.getElementById("question-text").innerText = data.text;
+  document.getElementById("question-text").innerText = data.text || "No text provided for this step.";
   const optionsDiv = document.getElementById("options-container");
   optionsDiv.innerHTML = "";
 
-  data.options.forEach(opt => {
+  // Safely check if options exist before running forEach
+  const optionsList = Array.isArray(data.options) ? data.options : [];
+  
+  optionsList.forEach(opt => {
     const btn = document.createElement("button");
     btn.className = "option-btn";
     btn.innerText = opt.label;
