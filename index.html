@@ -9,12 +9,21 @@
     .card { border: 1px solid #ccc; border-radius: 8px; padding: 24px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
     .option-btn { display: block; width: 100%; text-align: left; padding: 12px 16px; margin: 8px 0; border: 1px solid #0070f3; background: #fff; color: #0070f3; border-radius: 6px; cursor: pointer; font-size: 16px; }
     .option-btn:hover { background: #0070f3; color: #fff; }
+    .nav-btn { display: inline-block; padding: 8px 16px; border: 1px solid #666; background: #f4f4f4; color: #333; border-radius: 4px; cursor: pointer; font-size: 14px; margin-right: 8px; }
+    .nav-btn:hover { background: #e0e0e0; }
+    .nav-bar { margin-bottom: 20px; display: flex; justify-content: space-between; }
     .hidden { display: none; }
   </style>
 </head>
 <body>
 
   <div class="card">
+    <!-- Navigation Bar containing back-btn and reset-btn -->
+    <div class="nav-bar">
+      <button id="back-btn" onclick="handleBack()" class="nav-btn hidden">← Back</button>
+      <button id="reset-btn" onclick="handleStartOver()" class="nav-btn">Start over</button>
+    </div>
+
     <div id="question-container">
       <h2 id="question-text">Loading intake assistant...</h2>
       <div id="options-container"></div>
@@ -24,7 +33,7 @@
       <h2>Intake Complete</h2>
       <p>Here is your generated matter summary:</p>
       <pre id="summary-text" style="background: #f4f4f4; padding: 12px; border-radius: 4px;"></pre>
-      <button onclick="sessionStorage.clear(); location.reload();" class="option-btn">Start Over</button>
+      <button onclick="handleStartOver()" class="option-btn">Start over</button>
     </div>
   </div>
 

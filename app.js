@@ -58,8 +58,8 @@ function handleBack() {
   fetchNextQuestion(currentQuestionId, answers);
 }
 
-// --- UPDATED START AGAIN HANDLER ---
-function handleStartAgain() {
+// --- UPDATED START OVER HANDLER ---
+function handleStartOver() {
   // 1. Completely wipe all in-memory answers, history, and state
   answers = {};
   historyStack = [];
