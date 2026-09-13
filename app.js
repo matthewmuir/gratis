@@ -1,5 +1,5 @@
 // Replace with your actual Supabase Function URL from your dashboard
-const ENDPOINT_URL = "https://<YOUR_PROJECT_REF>.supabase.co/functions/v1/get-next-question";
+const ENDPOINT_URL = "https://gcvzyfpkqaaybwtuezem.supabase.co/functions/v1/get-next-question";
 
 // Read existing answers or start fresh in memory (cleared on tab close)
 let answers = JSON.parse(sessionStorage.getItem("gratis_answers") || "{}");
